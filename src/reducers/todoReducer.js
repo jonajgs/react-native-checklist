@@ -13,6 +13,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+    const index = state.tasks.findIndex(task => task.id === action.taskId);
     switch (action.type) {
         case CREATE_TASK:
             return {
@@ -30,43 +31,53 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 tasks: [
-                    ...state.tasks.filter(task => task.id < action.taskId),
-                    ...[{
-                        ...state.tasks.find(filter => task.id === action.taskId),
-                        ...action.newData,
-                    }],
-                    ...state.tasks.filter(task => task.id > action.taskId),
+                    ...state.tasks.map(task => {
+                        if (task.id === action.taskId) {
+                            return {
+                                ...task,
+                                ...action.newData,
+                            };
+                        }
+                        return task;
+                    }),
                 ],
             };
         case DELETE_TASK:
             return {
                 ...state,
                 tasks: [
-                    ...state.tasks.filter(task => task.id !== action.taskId),
+                    ...state.tasks.slice(0, index),
+                    ...state.tasks.slice(index + 1),
                 ],
             };
         case MARK_AS_COMPLETE_TASK:
             return {
                 ...state,
                 tasks: [
-                    ...state.tasks.filter(task => task.id < action.taskId),
-                    ...[{
-                        ...state.tasks.find(task => task.id === action.taskId),
-                        complete: true,
-                    }],
-                    ...state.tasks.filter(task => task.id > action.taskId),
+                    ...state.tasks.map(task => {
+                        if (task.id === action.taskId) {
+                            return {
+                                ...task,
+                                complete: true,
+                            };
+                        }
+                        return task;
+                    }),
                 ],
             };
         case MARK_AS_UNCOMPLETE_TASK:
             return {
                 ...state,
                 tasks: [
-                    ...state.tasks.filter(task => task.id < action.taskId),
-                    ...[{
-                        ...state.tasks.find(task => task.id === action.taskId),
-                        complete: false,
-                    }],
-                    ...state.tasks.filter(task => task.id > action.taskId),
+                    ...state.tasks.map(task => {
+                        if (task.id === action.taskId) {
+                            return {
+                                ...task,
+                                complete: false,
+                            };
+                        }
+                        return task;
+                    }),
                 ],
             };
         case SET_STATE:

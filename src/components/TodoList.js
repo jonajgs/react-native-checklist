@@ -30,7 +30,8 @@ class TodoList extends Component {
     }
 
     rowHasChanged(prevRow, nextRow) {
-        return prevRow.complete != nextRow.complete
+        return (prevRow && nextRow) ||
+                prevRow.complete != nextRow.complete;
     }
 
     render() {
