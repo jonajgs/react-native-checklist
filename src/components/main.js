@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import TodoForm from './todoForm';
-import TodoList from './TodoList';
+import TodoHeader from '../containers/TodoHeader';
+import TodoList from '../containers/TodoList';
 
 export default function() {
     return (
         <View style={{ flex: 1 }}>
-            <TodoForm />
+            <TodoHeader />
             <TodoList />
         </View>
     );

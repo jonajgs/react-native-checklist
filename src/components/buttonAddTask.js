@@ -1,28 +1,24 @@
 import React from 'react';
 import { TouchableHighlight, View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { COLORS } from '../constants';
 
 export default function({ onAddTask }) {
     return (
-        <View
+        <TouchableHighlight
+            onPress={onAddTask}
             style={{
-                flex: 1,
-                justifyContent: 'center',
+                width: 48,
+                padding: 8,
                 alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 50,
             }}
         >
-            <TouchableHighlight
-                onPress={onAddTask}
-                style={{
-                    backgroundColor: '#3f719f',
-                    padding: 8,
-                    borderRadius: 2,
-                }}
-            >
-                <Text>
-                    {'agregar'}
-                </Text>
-            </TouchableHighlight>
-        </View>
+            <Text>
+                <Icon name={'plus'} size={16} color={COLORS.color1} />
+            </Text>
+        </TouchableHighlight>
     );
 }
