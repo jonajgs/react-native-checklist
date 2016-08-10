@@ -3,6 +3,7 @@ import { Text, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import TodoItem from '../components/todoItem';
 import { saveTodo, getTodo } from '../reducers/todoActions';
+import { COLORS } from '../constants';
 
 class TodoList extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class TodoList extends Component {
         };
 
         this.saveTodo = this.saveTodo.bind(this);
+        this.renderRow = this.renderRow.bind(this);
     }
     componentDidMount() {
         const { updateChecklist } = this.props;
@@ -34,12 +36,28 @@ class TodoList extends Component {
                 prevRow.complete != nextRow.complete;
     }
 
+    getImageRandom() {
+        const randomNumber = Math.floor((Math.random() * 10) + 1);
+
+        return `./src/assets/img/back${randomNumber}.jpg`;
+    }
+
+    renderRow(task) {
+        return (
+            <TodoItem
+                {...task}
+                getImageRandom={this.getImageRandom}
+            />
+        );
+    }
+
     render() {
         return (
             <ListView
                 enableEmptySections
+                style={{ backgroundColor: COLORS.color1 }}
                 dataSource={this.state.dataSource}
-                renderRow={(task) => <TodoItem {...task} />} />
+                renderRow={this.renderRow} />
         );
     }
 }
