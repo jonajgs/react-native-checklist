@@ -11,9 +11,6 @@ export default function({ text, onChange }) {
                     onChange(text);
                 }}
                 placeholder={'ej: hacer la tarea'}
-                placeholderTextColor={COLORS.color1}
-                underlineColorAndroid={COLORS.button}
-                style={{ color: COLORS.color1 }}
                 value={text}
             />
         </View>

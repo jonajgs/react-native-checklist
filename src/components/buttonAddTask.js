@@ -4,20 +4,18 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../constants';
 
-export default function({ onAddTask }) {
+export default function({ onAddNewTask }) {
     return (
         <TouchableHighlight
-            onPress={onAddTask}
             style={{
-                width: 48,
-                padding: 8,
-                alignItems: 'center',
+                flex: 1,
                 justifyContent: 'center',
-                borderRadius: 50,
+                marginRight: 10,
             }}
+            onPress={onAddNewTask}
         >
             <Text>
-                <Icon name={'plus'} size={16} color={COLORS.color1} />
+                <Icon name={'plus-circle'} size={23} color={COLORS.color1} />
             </Text>
         </TouchableHighlight>
     );

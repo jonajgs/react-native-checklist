@@ -18,13 +18,17 @@ function todoItem({ id, task, complete, markAsComplete, markAsUncomplete, delete
     return (
         <View
             style={{
-                margin: 5,
+                marginTop: 5,
+                marginLeft: 5,
+                marginRight: 5,
                 padding: 10,
                 borderWidth: 1,
                 borderColor: '#ccc',
                 backgroundColor: '#fff',
                 flex: 1,
+                elevation: 10,
                 flexDirection: 'row',
+                borderRadius: 2,
                 justifyContent: 'space-between',
             }}
         >
@@ -38,20 +42,20 @@ function todoItem({ id, task, complete, markAsComplete, markAsUncomplete, delete
                     onPress={() => {
                         changeTaskStatus(id);
                     }}
-                    style={{ marginLeft: 15 }}
+                    style={{ marginLeft: 20 }}
                 >
-                    <Icon name={checked} size={15} color="#ccc" />
+                    <Icon name={checked} size={15} color={complete ? '#9E9E9E' : '#ccc'} />
                 </Text>
                 <Text
-                    style={{ marginLeft: 15 }}
+                    style={{ marginLeft: 20 }}
                 >
-                    <Icon name={'edit'} size={15} color="#ccc" />
+                    <Icon name={'edit'} size={15} color="#9E9E9E" />
                 </Text>
                 <Text
                     onPress={() => {deleteTask(id)}}
-                    style={{ marginLeft: 15 }}
+                    style={{ marginLeft: 20 }}
                 >
-                    <Icon name={'trash-o'} size={15} color="#ccc" />
+                    <Icon name={'trash-o'} size={15} color="#E53935" />
                 </Text>
             </View>
         </View>
