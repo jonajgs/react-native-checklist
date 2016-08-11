@@ -1,19 +1,32 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableHighlight, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import ButtonAddTask from './buttonAddTask';
 import InputAddTask from './inputAddTask';
+import { COLORS } from '../constants';
 
 export default function({ onChangeInput, task, onAddTask }) {
     return (
-        <View style={{ flexDirection: 'row' }}>
-            <InputAddTask onChange={onChangeInput} text={task}  />
-            <ButtonAddTask
-                onAddTask={() => {
-                    if (task && task.trim() !== '') {
-                        onAddTask();
-                    }
+        <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between', marginTop: 56 }}>
+            <View>
+                <InputAddTask onChange={onChangeInput} text={task}  />
+            </View>
+            <TouchableHighlight
+                style={{
+                    alignItems: 'flex-end',
+                    margin: 20,
                 }}
-            />
+                onPress={() => {
+                    onAddTask({
+                        task,
+                        complete: false,
+                    });
+                }}
+            >
+                <Text>
+                    <Icon name={'check'} size={20} color={COLORS.background} />
+                </Text>
+            </TouchableHighlight>
         </View>
     )
 }

@@ -55,7 +55,7 @@ class TodoList extends Component {
         return (
             <ListView
                 enableEmptySections
-                style={{ backgroundColor: COLORS.color1 }}
+                style={{ marginTop: 56 }}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow} />
         );
