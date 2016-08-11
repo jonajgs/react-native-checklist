@@ -27,7 +27,7 @@ function todoItem({ id, task, complete, markAsComplete, markAsUncomplete, delete
                 borderColor: '#ccc',
                 backgroundColor: '#fff',
                 flex: 1,
-                elevation: 15,
+                elevation: 10,
                 flexDirection: 'row',
                 borderRadius: 2,
                 justifyContent: 'space-between',

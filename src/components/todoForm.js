@@ -7,7 +7,15 @@ import { COLORS } from '../constants';
 
 export default function({ onChangeInput, task, onAddTask }) {
     return (
-        <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between', marginTop: 56 }}>
+        <View
+            style={{
+                flexDirection: 'column',
+                flex: 1,
+                justifyContent: 'space-between',
+                marginTop: 56,
+                backgroundColor: "#fff",
+            }}
+        >
             <View>
                 <InputAddTask onChange={onChangeInput} text={task}  />
             </View>

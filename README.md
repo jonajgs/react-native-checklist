@@ -3,7 +3,7 @@
 ## Requirements
 - react native
 - nodejs
-- virtual device or smartphone with android
+- virtual device (avd of android or genymotion) or smartphone with android
 
 ## Build
 - after clone, run `npm install`
