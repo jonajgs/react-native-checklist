@@ -34,13 +34,14 @@ const navigationBarRouteMapper = {
         if (route.id === 0) {
             return (
                 <ButtonAddTask
-                onAddNewTask={() => {
-                    navigator.push({
-                        name: 'NUEVA TAREA',
-                        component: TodoFormContainer,
-                        id: 1,
-                    })
-                }}
+                    onAddNewTask={() => {
+                        navigator.push({
+                            name: 'NUEVA TAREA',
+                            component: TodoFormContainer,
+                            id: 1,
+                        });
+                        navigator.props.onNewTask(navigator);
+                    }}
                 />
             );
         }
@@ -82,6 +83,7 @@ class MainContainer extends Component {
             <route.component
                 navigator={navigator}
                 route={route}
+                onNewTask={navigator.props.onNewTask}
             />
         )
     }
@@ -94,12 +96,13 @@ class MainContainer extends Component {
     }
     render() {
         const { initialRoute } = this.state;
-        const { onOpenDrawer } = this.props;
+        const { onOpenDrawer, onNewTask } = this.props;
         return (
             <Navigator
                 initialRoute={initialRoute}
                 renderScene={this.renderScene}
                 onOpenDrawer={onOpenDrawer}
+                onNewTask={onNewTask}
                 configureScene={this.configureScene}
                 navigationBar={
                     <Navigator.NavigationBar

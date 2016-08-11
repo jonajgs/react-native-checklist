@@ -45,12 +45,14 @@ class TodoList extends Component {
         return `./src/assets/img/back${randomNumber}.jpg`;
     }
     goToAddTodo() {
-        const { navigator } = this.props;
+        const { navigator, onNewTask } = this.props;
         navigator.push({
             name: 'NUEVA TAREA',
             component: TodoFormContainer,
             id: 1,
         });
+        onNewTask(navigator);
+
     }
     renderEmptyView() {
         return (
