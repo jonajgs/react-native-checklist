@@ -18,15 +18,16 @@ function todoItem({ id, task, complete, markAsComplete, markAsUncomplete, delete
     return (
         <View
             style={{
-                marginTop: 5,
-                marginLeft: 5,
-                marginRight: 5,
+                marginTop: 10,
+                marginBottom: 5,
+                marginLeft: 10,
+                marginRight: 10,
                 padding: 10,
                 borderWidth: 1,
                 borderColor: '#ccc',
                 backgroundColor: '#fff',
                 flex: 1,
-                elevation: 10,
+                elevation: 15,
                 flexDirection: 'row',
                 borderRadius: 2,
                 justifyContent: 'space-between',

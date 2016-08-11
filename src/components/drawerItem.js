@@ -1,12 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { TouchableHighlight, Text } from 'react-native';
 
-export default function({ children }) {
+export default function({ children, index, navigator, onCloseDrawer }) {
     return (
-        <View style={{ marginTop: 10 }}>
+        <TouchableHighlight
+            style={{ marginTop: 10 }}
+            underlayColor={'transparent'}
+            onPress={() => {
+                navigator.popToRoute(navigator.getCurrentRoutes()[0]);
+                onCloseDrawer();
+            }}
+        >
             <Text>
                 {children}
             </Text>
-        </View>
+        </TouchableHighlight>
     );
 }

@@ -22,23 +22,28 @@ const navigationBarRouteMapper = {
                     justifyContent: 'center',
                     marginLeft: 10,
                 }}
-                onPress={onOpenDrawer}
+                onPress={() => {
+                    onOpenDrawer(navigator);
+                }}
             >
                 <Icon name={'navicon'} size={20} color={COLORS.color1} />
             </TouchableHighlight>
         );
     },
     RightButton: (route, navigator, index) => {
-        return (
-            <ButtonAddTask
+        if (route.id === 0) {
+            return (
+                <ButtonAddTask
                 onAddNewTask={() => {
                     navigator.push({
                         name: 'NUEVA TAREA',
                         component: TodoFormContainer,
+                        id: 1,
                     })
                 }}
-            />
-        );
+                />
+            );
+        }
     },
     Title: (route, navigator, index) => {
         return (

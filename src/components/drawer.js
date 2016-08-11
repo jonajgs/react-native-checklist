@@ -9,7 +9,7 @@ const rows = [
     'CONFIGURACIÓN',
 ];
 
-export default function() {
+export default function({ navigator, closeDrawer }) {
     return (
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
             <View
@@ -26,7 +26,12 @@ export default function() {
             </View>
              <View style={{ flex: 0.8, paddingLeft: 10 }}>
                 {rows.map((row, key) =>
-                    <DrawerItem key={key}>
+                    <DrawerItem
+                        key={key}
+                        index={key}
+                        navigator={navigator}
+                        onCloseDrawer={closeDrawer}
+                    >
                         {row}
                     </DrawerItem>
                 )}

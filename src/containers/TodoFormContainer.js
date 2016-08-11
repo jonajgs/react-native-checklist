@@ -10,18 +10,23 @@ class TodoFormContainer extends Component {
         this.state = {};
 
         this.onChange = this.onChange.bind(this);
+        this.onAddTask = this.onAddTask.bind(this);
     }
     onChange(task) {
         this.setState({ task });
     }
+    onAddTask(task) {
+        const { addTask, navigator } = this.props;
+        addTask(task);
+        navigator.pop();
+    }
     render() {
         const { task } = this.state;
-        const { addTask } = this.props;
         return (
             <TodoForm
                 onChangeInput={this.onChange}
                 task={task}
-                onAddTask={addTask}
+                onAddTask={this.onAddTask}
             />
         );
     }

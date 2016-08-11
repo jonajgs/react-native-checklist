@@ -14,8 +14,10 @@ export default class MainContainer extends Component {
         this.openDrawer = this.openDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
     }
-    openDrawer() {
-        this.refs.drawer.openDrawer();
+    openDrawer(navigator) {
+        this.setState({
+            navigator,
+        }, this.refs.drawer.openDrawer());
     }
     closeDrawer() {
         this.refs.drawer.closeDrawer();
@@ -30,7 +32,7 @@ export default class MainContainer extends Component {
                     () =>
                         <Drawer
                             navigator={this.state.navigator}
-                            closeDrawer={this.closeDrawer.bind(this)}
+                            closeDrawer={this.closeDrawer}
                         />
                 }
             >

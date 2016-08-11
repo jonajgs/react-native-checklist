@@ -3,20 +3,28 @@ import { View, TouchableHighlight, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ButtonAddTask from './buttonAddTask';
 import InputAddTask from './inputAddTask';
+import { COLORS } from '../constants';
 
 export default function({ onChangeInput, task, onAddTask }) {
     return (
-        <View style={{ flexDirection: 'row', marginTop: 56 }}>
-            <InputAddTask onChange={onChangeInput} text={task}  />
+        <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between', marginTop: 56 }}>
+            <View>
+                <InputAddTask onChange={onChangeInput} text={task}  />
+            </View>
             <TouchableHighlight
                 style={{
-                    flex: 1,
-                    justifyContent: 'center'
+                    alignItems: 'flex-end',
+                    margin: 20,
                 }}
-                onPress={onAddTask}
+                onPress={() => {
+                    onAddTask({
+                        task,
+                        complete: false,
+                    });
+                }}
             >
                 <Text>
-                    <Icon name={'plus'} size={20} />
+                    <Icon name={'check'} size={20} color={COLORS.background} />
                 </Text>
             </TouchableHighlight>
         </View>
