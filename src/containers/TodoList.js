@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Text, ListView } from 'react-native';
+import { Text, ListView, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
 import TodoItem from '../components/todoItem';
 import { saveTodo, getTodo } from '../reducers/todoActions';
 import { COLORS } from '../constants';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import TodoFormContainer from '../containers/TodoFormContainer';
 
 class TodoList extends Component {
     constructor(props) {
@@ -16,6 +18,7 @@ class TodoList extends Component {
 
         this.saveTodo = this.saveTodo.bind(this);
         this.renderRow = this.renderRow.bind(this);
+        this.goToAddTodo = this.goToAddTodo.bind(this);
     }
     componentDidMount() {
         const { updateChecklist } = this.props;
@@ -41,7 +44,42 @@ class TodoList extends Component {
 
         return `./src/assets/img/back${randomNumber}.jpg`;
     }
-
+    goToAddTodo() {
+        const { navigator } = this.props;
+        navigator.push({
+            name: 'NUEVA TAREA',
+            component: TodoFormContainer,
+            id: 1,
+        });
+    }
+    renderEmptyView() {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <Text
+                    style={{ fontSize: 35, color: 'rgba(156, 156, 156, 0.8)' }}
+                >
+                        {'No tienes todos'}
+                    </Text>
+                <Text
+                    style={{ fontSize: 25, color: 'rgba(156, 156, 156, 0.8)' }}
+                >
+                    {'Agregar uno ahora'}
+                </Text>
+                <TouchableHighlight
+                    onPress={this.goToAddTodo}
+                    underlayColor={'transparent'}
+                >
+                    <Icon name={'plus-circle'} size={100} color={'rgba(156, 156, 156, 0.2)'} />
+                </TouchableHighlight>
+            </View>
+        );
+    }
     renderRow(task) {
         return (
             <TodoItem
@@ -50,15 +88,22 @@ class TodoList extends Component {
             />
         );
     }
+    renderView() {
+        const thereTasks = this.props.tasks.length;
+        if (thereTasks) {
+            return (
+                <ListView
+                    enableEmptySections
+                    style={{ marginTop: 56, backgroundColor: "#fff" }}
+                    dataSource={this.state.dataSource}
+                    renderRow={this.renderRow} />
+            );
+        }
 
+        return this.renderEmptyView();
+    }
     render() {
-        return (
-            <ListView
-                enableEmptySections
-                style={{ marginTop: 56, backgroundColor: "#fff" }}
-                dataSource={this.state.dataSource}
-                renderRow={this.renderRow} />
-        );
+        return this.renderView();
     }
 }
 
