@@ -7,6 +7,7 @@ import { COLORS } from '../constants';
 export default function({ onAddNewTask }) {
     return (
         <TouchableHighlight
+            underlayColor={'transparent'}
             style={{
                 flex: 1,
                 justifyContent: 'center',

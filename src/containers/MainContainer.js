@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DrawerLayoutAndroid } from 'react-native';
+import { DrawerLayoutAndroid, BackAndroid } from 'react-native';
 import Navigator from './Navigator';
 import Drawer from '../components/drawer';
 
@@ -13,6 +13,23 @@ export default class MainContainer extends Component {
 
         this.openDrawer = this.openDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
+        this.popScene = this.popScene.bind(this);
+
+        BackAndroid.addEventListener('hardwareBackPress', () => {
+            const { navigator } = this.state;
+            const current = (navigator) ? navigator.getCurrentRoutes() : false;
+
+            if (current && current.length > 1) {
+                navigator.pop();
+                return true;
+            }
+
+            BackAndroid.exitApp();
+            return true;
+        });
+    }
+    popScene(navigator) {
+        this.setState({ navigator });
     }
     openDrawer(navigator) {
         this.setState({
@@ -38,6 +55,7 @@ export default class MainContainer extends Component {
             >
                 <Navigator
                     onOpenDrawer={this.openDrawer}
+                    onNewTask={this.popScene}
                 />
             </DrawerLayoutAndroid>
         );
