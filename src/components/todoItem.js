@@ -34,7 +34,8 @@ function todoItem({ id, task, complete, markAsComplete, markAsUncomplete, delete
             }}
         >
             <Text
-                style={{ textDecorationLine, flex: 3 }}
+                numberOfLines={1}
+                style={{ textDecorationLine, flex: 1 }}
             >
                 {task}
             </Text>
