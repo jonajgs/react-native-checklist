@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ButtonAddTask from '../components/buttonAddTask';
 import TodoFormContainer from './TodoFormContainer';
 import TodoList from './TodoList';
+import TodoRoutine from './TodoRoutine';
 import { COLORS } from '../constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 

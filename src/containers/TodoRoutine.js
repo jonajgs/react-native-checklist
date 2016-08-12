@@ -33,9 +33,16 @@ class TodoList extends Component {
             dataSource: this.state.dataSource.cloneWithRows(props.tasks),
         }, this.saveTodo);
     }
+
     rowHasChanged(prevRow, nextRow) {
         return (prevRow && nextRow) ||
                 prevRow.complete != nextRow.complete;
+    }
+
+    getImageRandom() {
+        const randomNumber = Math.floor((Math.random() * 10) + 1);
+
+        return `./src/assets/img/back${randomNumber}.jpg`;
     }
     goToAddTodo() {
         const { navigator, onNewTask } = this.props;
@@ -79,6 +86,7 @@ class TodoList extends Component {
         return (
             <TodoItem
                 {...task}
+                getImageRandom={this.getImageRandom}
             />
         );
     }

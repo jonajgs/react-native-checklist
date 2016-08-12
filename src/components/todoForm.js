@@ -24,11 +24,14 @@ export default function({ onChangeInput, task, onAddTask }) {
                     alignItems: 'flex-end',
                     margin: 20,
                 }}
+                underlayColor={'transparent'}
                 onPress={() => {
-                    onAddTask({
-                        task,
-                        complete: false,
-                    });
+                    if (task && task.trim() !== '') {
+                        onAddTask({
+                            task: task.trim(),
+                            complete: false,
+                        });
+                    }
                 }}
             >
                 <Text>

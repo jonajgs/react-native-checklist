@@ -15,9 +15,10 @@ class TodoFormContainer extends Component {
     onChange(task) {
         this.setState({ task });
     }
-    onAddTask(task) {
+    onAddTask(todo) {
         const { addTask, navigator } = this.props;
-        addTask(task);
+
+        addTask(todo);
         navigator.pop();
     }
     render() {
